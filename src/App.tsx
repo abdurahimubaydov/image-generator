@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import SearchSection from "./components /search-section";
 import { ImageSection } from "./components /image-section";
 import OpenAi from 'openai'
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function App(): JSX.Element {
   const [data, setData] = useState<string>();
@@ -12,7 +12,7 @@ export default function App(): JSX.Element {
 
   const openai = new OpenAi({apiKey: process.env.REACT_APP_API_KEY, dangerouslyAllowBrowser: true})
 
-  const getImage = async () => {
+  const getImage = async (): Promise<void> => {
     setLoading(true)
     try {
       const image = await openai.images.generate(
@@ -33,17 +33,13 @@ export default function App(): JSX.Element {
 
   const searchImage = async (): Promise<void> => {
     try {
-      await getImage();
+      await getImage()
     } catch (error) {
       console.error("Error searching image:", error);    
     }
   };
-
-
-
-
-
-  console.log(data ? data : 'Loading...')
+  
+  console.log(value)
 
   return (
     <Box
@@ -63,6 +59,7 @@ export default function App(): JSX.Element {
       <ImageSection 
         url={data?.toString()} 
         loading={loading} 
+        value={value}
       />
     </Box>
   );

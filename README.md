@@ -46,4 +46,5 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 
-OPENAI_API_KEY
+## For me:
+   for this project i have used several technologies, including: Chakra-UI, open-ai-api's image generator dall-e-3, typescript
